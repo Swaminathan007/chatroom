@@ -14,6 +14,7 @@
       padding: 0;
     }
     #messages li {
+      
       padding: 10px;
     }
     #messages li:nth-child(odd) {
@@ -25,7 +26,8 @@
     <div class="container shadow mt-3 p-2">
     <h1 class="my-4">Chat Room</h1>
     <div class="container" style="height:60vh;">
-        <ul id="messages" class="list-unstyled"></ul>
+        <ul id="messages" class="list-unstyled overflow-auto shadow-lg rounded p-2"
+          style="height:60vh;"></ul>
     </div>
     <form id="form" class="mt-4">
       <div class="input-group">
@@ -42,6 +44,7 @@
 
     var name = prompt("Enter your name:");
     socket.emit('join', name);
+    const messagesContainer = document.getElementById('messages');
 
     const form = document.getElementById('form');
     const input = document.getElementById('input');
@@ -58,6 +61,7 @@
       const item = document.createElement('li');
       item.textContent = msg;
       document.getElementById('messages').appendChild(item);
+       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     });
   </script>
 </body>
